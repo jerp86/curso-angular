@@ -7,5 +7,18 @@
       [name]="controlName"
       [formControlName]="controlName"
     ></textarea>
+
+    <mat-error *ngIf="validateField.hasErrorValidate(formControl, 'required')">
+      Campo obrigatório
+    </mat-error>
+
+    <mat-error *ngIf="validateField.hasErrorValidate(formControl, 'minlength')">
+      Campo deve ter no mínimo 3 caracteres
+    </mat-error>
+
+    <mat-error *ngIf="validateField.hasErrorValidate(formControl, 'maxlength')">
+      Campo pode ter no máximo 256 caracteres
+    </mat-error>
+
   </mat-form-field>
 </div>
