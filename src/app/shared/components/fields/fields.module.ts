@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InputTextComponent } from './input-text/input-text.component';
 import { MaterialModule } from '../../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputTextareaComponent } from './input-textarea/input-textarea.component';
+import { InputDateComponent } from './input-date/input-date.component';
 import { InputNumberComponent } from './input-number/input-number.component';
+import { InputTextComponent } from './input-text/input-text.component';
+import { InputTextareaComponent } from './input-textarea/input-textarea.component';
 
 
 
@@ -12,7 +13,8 @@ import { InputNumberComponent } from './input-number/input-number.component';
   declarations: [
     InputTextComponent,
     InputTextareaComponent,
-    InputNumberComponent
+    InputNumberComponent,
+    InputDateComponent
   ],
   imports: [
     CommonModule,
@@ -21,9 +23,10 @@ import { InputNumberComponent } from './input-number/input-number.component';
     ReactiveFormsModule,
   ],
   exports: [
+    InputDateComponent,
+    InputNumberComponent,
     InputTextComponent,
     InputTextareaComponent,
-    InputNumberComponent,
   ]
 })
 export class FieldsModule { }
