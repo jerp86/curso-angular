@@ -10,6 +10,7 @@ export class InputSelectComponent {
   @Input() controlName = ''
   @Input() formGroup = {} as FormGroup
   @Input() inputName = ''
+  @Input() options: string[] = []
 
   constructor(public validateField: ValidateFieldsService) {}
 
