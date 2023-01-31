@@ -1,0 +1,11 @@
+<div [formGroup]="formGroup">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>{{ inputName }}</mat-label>
+    <textarea
+      matInput
+      [placeholder]="inputName"
+      [name]="controlName"
+      [formControlName]="controlName"
+    ></textarea>
+  </mat-form-field>
+</div>
