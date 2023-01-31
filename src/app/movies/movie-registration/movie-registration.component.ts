@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class MovieRegistrationComponent implements OnInit {
   registration: FormGroup = {} as FormGroup
+  moveGenres: string[] = []
 
   constructor(
     private formBuilder: FormBuilder
@@ -27,6 +28,8 @@ export class MovieRegistrationComponent implements OnInit {
       imdbUrl: ['', [Validators.minLength(10)]],
       movieGenre: ['', [Validators.required]]
     })
+
+    this.moveGenres = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror']
   }
 
   savedForm(): void {

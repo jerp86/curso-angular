@@ -13,15 +13,29 @@
         <dio-input-text inputName="Título" controlName="title" [formGroup]="registration" />
         <dio-input-text inputName="Link Foto" controlName="imageUrl" [formGroup]="registration" />
 
-        <dio-input-date  inputName="Data de Lançamento" controlName="releaseDate" [formGroup]="registration" />
+        <dio-input-date
+          inputName="Data de Lançamento"
+          controlName="releaseDate"
+          [formGroup]="registration"
+        />
 
         <dio-input-textarea inputName="Descrição" controlName="description" [formGroup]="registration" />
 
-        <dio-input-number inputName="Nota IMDb" controlName="note" [formGroup]="registration" [step]="0.1" />
+        <dio-input-number
+          inputName="Nota IMDb"
+          controlName="note"
+          [formGroup]="registration"
+          [step]="0.1"
+        />
 
         <dio-input-text inputName="Link IMDb" controlName="imdbUrl" [formGroup]="registration" />
 
-        <dio-input-select inputName="Gênero" controlName="movieGenre" [formGroup]="registration" />
+        <dio-input-select
+          inputName="Gênero"
+          controlName="movieGenre"
+          [formGroup]="registration"
+          [options]="moveGenres"
+        />
       </mat-card-content>
 
       <mat-card-actions class="container-buttons">
