@@ -4,8 +4,8 @@
   <mat-card class="center width50">
     <form
       [formGroup]="registration"
-      (ngSubmit)="savedForm()"
-      (ngReset)="resetForm()"
+      (ngSubmit)="handleSubmit()"
+      (ngReset)="handleResetForm()"
       autocomplete="off"
       novalidate
     >

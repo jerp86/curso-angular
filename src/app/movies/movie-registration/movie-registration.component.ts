@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MoviesService } from 'src/app/core/movies.service';
+import { Movie } from 'src/app/shared/models/movie';
 
 @Component({
   selector: 'dio-movie-registration',
@@ -11,7 +13,8 @@ export class MovieRegistrationComponent implements OnInit {
   moveGenres: string[] = []
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private moviesService: MoviesService
   ) {}
 
   get fields()  {
@@ -32,17 +35,26 @@ export class MovieRegistrationComponent implements OnInit {
     this.moveGenres = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror']
   }
 
-  savedForm(): void {
+  #savedForm(movie: Movie): void {
+    this.moviesService.save(movie)
+      .subscribe(
+        () => alert('SUCESSO no #savedForm'),
+        () => alert('ERRO no #savedForm')
+      )
+  }
+
+  handleSubmit(): void {
     this.registration.markAllAsTouched()
 
     if (this.registration.invalid) {
       return
     }
 
-    alert(`SUCESSO!!!\n\n ${JSON.stringify(this.registration.value, null, 2)}`)
+    const movie = this.registration.getRawValue() as Movie
+    this.#savedForm(movie)
   }
 
-  resetForm(): void {
+  handleResetForm(): void {
     this.registration.reset()
   }
 }
