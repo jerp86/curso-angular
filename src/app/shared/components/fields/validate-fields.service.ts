@@ -8,6 +8,10 @@ export class ValidateFieldsService {
 
   constructor() { }
 
+  #hasError(control: AbstractControl, errorName: string): boolean {
+    return control.hasError(errorName)
+  }
+
   hasErrorValidate(control: AbstractControl, errorName: string): boolean {
     const hasTouchedOrDirty = control.touched || control.dirty
     if (hasTouchedOrDirty && this.#hasError(control, errorName)) {
@@ -17,7 +21,8 @@ export class ValidateFieldsService {
     return false
   }
 
-  #hasError(control: AbstractControl, errorName: string): boolean {
-    return control.hasError(errorName)
+  validateLength(control: AbstractControl, errorName: string): number {
+    const error = control.errors?.[errorName]
+    return error.requiredLength || error.min || error.max || 0
   }
 }
