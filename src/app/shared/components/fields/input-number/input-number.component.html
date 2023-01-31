@@ -17,11 +17,11 @@
     </mat-error>
 
     <mat-error *ngIf="validateField.hasErrorValidate(formControl, 'min')">
-      A nota deve ser no mínimo 0
+      A nota deve ser no mínimo {{ validateField.validateLength(formControl, 'min') }}
     </mat-error>
 
     <mat-error *ngIf="validateField.hasErrorValidate(formControl, 'max')">
-      A nota deve ser no máximo 10
+      A nota deve ser no máximo {{ validateField.validateLength(formControl, 'max') }}
     </mat-error>
   </mat-form-field>
 </div>
