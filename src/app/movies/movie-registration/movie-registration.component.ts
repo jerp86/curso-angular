@@ -46,23 +46,14 @@ export class MovieRegistrationComponent implements OnInit {
   }
 
   hasRequired(property: string): boolean {
-    const hasError = this.#hasError(property)
-    if (!hasError) return false
-
-    return hasError['required']
+    return this.#hasError(property)?.['required']
   }
 
   hasMin(property: string): boolean {
-    const hasError = this.#hasError(property)
-    if (!hasError) return false
-
-    return hasError['minlength'] || hasError['min']
+    return this.#hasError(property)?.['minlength'] || this.#hasError(property)?.['min']
   }
 
   hasMax(property: string): boolean {
-    const hasError = this.#hasError(property)
-    if (!hasError) return false
-
-    return hasError['maxlength'] || hasError['max']
+    return this.#hasError(property)?.['maxlength'] || this.#hasError(property)?.['max']
   }
 }
