@@ -15,17 +15,7 @@
 
         <dio-input-text inputName="Link IMDb" controlName="imdbUrl" [formGroup]="registration" />
 
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Gênero</mat-label>
-          <mat-select placeholder="Gênero" formControlName="movieGenre">
-            <mat-option value="Ação">Açao</mat-option>
-            <mat-option value="Aventura">Aventura</mat-option>
-            <mat-option value="Ficção Científica">Ficção Científica</mat-option>
-            <mat-option value="Romance">Romance</mat-option>
-            <mat-option value="Terror">Terror</mat-option>
-          </mat-select>
-          <mat-error *ngIf="hasRequired('movieGenre')">Campo obrigatório</mat-error>
-        </mat-form-field>
+        <dio-input-select inputName="Gênero" controlName="movieGenre" [formGroup]="registration" />
       </mat-card-content>
 
       <mat-card-actions class="container-buttons">
