@@ -4,8 +4,7 @@ import { ValidateFieldsService } from '../validate-fields.service';
 
 @Component({
   selector: 'dio-input-text',
-  templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss']
+  templateUrl: './input-text.component.html'
 })
 export class InputTextComponent {
   @Input() inputName: string = ''
