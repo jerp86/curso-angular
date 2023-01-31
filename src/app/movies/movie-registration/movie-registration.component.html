@@ -4,19 +4,9 @@
   <mat-card class="center width50">
     <form [formGroup]="registration" (ngSubmit)="savedForm()" (ngReset)="resetForm()">
       <mat-card-content>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Título</mat-label>
-          <input matInput placeholder="Título" name="title" formControlName="title" />
-          <mat-error *ngIf="hasRequired('title')">Campo obrigatório</mat-error>
-          <mat-error *ngIf="hasMin('title')">Campo deve ter no mínimo 3 caracteres</mat-error>
-          <mat-error *ngIf="hasMax('title')">Campo pode ter no máximo 256 caracteres</mat-error>
-        </mat-form-field>
+        <dio-input-text inputName="Título" controlName="title" [formGroup]="registration" />
 
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Link Foto</mat-label>
-          <input matInput placeholder="Link Foto" name="imageUrl" formControlName="imageUrl" />
-          <mat-error *ngIf="hasMin('imageUrl')">Campo deve ter no mínimo 10 caracteres</mat-error>
-        </mat-form-field>
+        <dio-input-text inputName="Link Foto" controlName="imageUrl" [formGroup]="registration" />
 
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Data de Lançamento</mat-label>
@@ -61,11 +51,7 @@
           <mat-error *ngIf="hasMax('note')">A nota deve ser no máximo 10</mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Link IMDb</mat-label>
-          <input matInput placeholder="Link IMDb" name="imdbUrl" formControlName="imdbUrl" />
-          <mat-error *ngIf="hasMin('imdbUrl')">Campo deve ter no mínimo 10 caracteres</mat-error>
-        </mat-form-field>
+        <dio-input-text inputName="Link IMDb" controlName="imdbUrl" [formGroup]="registration" />
 
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Gênero</mat-label>
