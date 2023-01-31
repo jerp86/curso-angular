@@ -2,7 +2,13 @@
 
 <div class="main-div">
   <mat-card class="center width50">
-    <form [formGroup]="registration" (ngSubmit)="savedForm()" (ngReset)="resetForm()">
+    <form
+      [formGroup]="registration"
+      (ngSubmit)="savedForm()"
+      (ngReset)="resetForm()"
+      autocomplete="off"
+      novalidate
+    >
       <mat-card-content>
         <dio-input-text inputName="Título" controlName="title" [formGroup]="registration" />
         <dio-input-text inputName="Link Foto" controlName="imageUrl" [formGroup]="registration" />
