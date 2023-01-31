@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidateFieldsService } from 'src/app/shared/components/fields/validate-fields.service';
 
 @Component({
   selector: 'dio-movie-registration',
@@ -9,10 +10,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class MovieRegistrationComponent implements OnInit {
   registration: FormGroup = {} as FormGroup
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private validateField: ValidateFieldsService,
+    private formBuilder: FormBuilder
+  ) {}
 
-  get hasTouchedOrDirty() {
-    return this.registration.touched || this.registration.dirty
+  get fields()  {
+    return this.registration.controls
   }
 
   ngOnInit(): void {
@@ -41,19 +45,17 @@ export class MovieRegistrationComponent implements OnInit {
     this.registration.reset()
   }
 
-  #hasError(property: string) {
-    return this.registration.controls[property].errors
-  }
-
   hasRequired(property: string): boolean {
-    return this.#hasError(property)?.['required']
+    return this.validateField.hasErrorValidate(this.fields?.[property], 'required')
   }
 
   hasMin(property: string): boolean {
-    return this.#hasError(property)?.['minlength'] || this.#hasError(property)?.['min']
+    return this.validateField.hasErrorValidate(this.fields?.[property], 'minlength')
+      || this.validateField.hasErrorValidate(this.fields?.[property], 'min')
   }
 
   hasMax(property: string): boolean {
-    return this.#hasError(property)?.['maxlength'] || this.#hasError(property)?.['max']
+    return this.validateField.hasErrorValidate(this.fields?.[property], 'maxlength')
+      || this.validateField.hasErrorValidate(this.fields?.[property], 'max')
   }
 }
