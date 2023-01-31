@@ -11,6 +11,10 @@ export class MovieRegistrationComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {}
 
+  get hasTouchedOrDirty() {
+    return this.registration.touched || this.registration.dirty
+  }
+
   ngOnInit(): void {
     this.registration = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(256)]],
@@ -24,6 +28,8 @@ export class MovieRegistrationComponent implements OnInit {
   }
 
   savedForm(): void {
+    this.registration.markAllAsTouched()
+
     if (this.registration.invalid) {
       return
     }
@@ -33,5 +39,30 @@ export class MovieRegistrationComponent implements OnInit {
 
   resetForm(): void {
     this.registration.reset()
+  }
+
+  #hasError(property: string) {
+    return this.registration.controls[property].errors
+  }
+
+  hasRequired(property: string): boolean {
+    const hasError = this.#hasError(property)
+    if (!hasError) return false
+
+    return hasError['required']
+  }
+
+  hasMin(property: string): boolean {
+    const hasError = this.#hasError(property)
+    if (!hasError) return false
+
+    return hasError['minlength'] || hasError['min']
+  }
+
+  hasMax(property: string): boolean {
+    const hasError = this.#hasError(property)
+    if (!hasError) return false
+
+    return hasError['maxlength'] || hasError['max']
   }
 }
