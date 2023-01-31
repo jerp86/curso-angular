@@ -7,21 +7,7 @@
         <dio-input-text inputName="Título" controlName="title" [formGroup]="registration" />
         <dio-input-text inputName="Link Foto" controlName="imageUrl" [formGroup]="registration" />
 
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Data de Lançamento</mat-label>
-          <input
-            matInput
-            [matDatepicker]="picker"
-            placeholder="Data de Lançamento"
-            name="releaseDate"
-            formControlName="releaseDate"
-            readonly
-            (click)="picker.open()"
-          />
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="hasRequired('releaseDate')">Campo obrigatório</mat-error>
-        </mat-form-field>
+        <dio-input-date  inputName="Data de Lançamento" controlName="releaseDate" [formGroup]="registration" />
 
         <dio-input-textarea inputName="Descrição" controlName="description" [formGroup]="registration" />
 
