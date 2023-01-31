@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieRegistrationComponent } from './movie-registration/movie-registration.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MaterialModule } from '../shared/material/material.module';
+import { FieldsModule } from '../shared/components/fields/fields.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { MaterialModule } from '../shared/material/material.module';
   ],
   imports: [
     CommonModule,
+    FieldsModule,
     FormsModule,
     MaterialModule,
     ReactiveFormsModule,
