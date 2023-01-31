@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ValidateFieldsService } from 'src/app/shared/components/fields/validate-fields.service';
 
 @Component({
   selector: 'dio-movie-registration',
@@ -11,7 +10,6 @@ export class MovieRegistrationComponent implements OnInit {
   registration: FormGroup = {} as FormGroup
 
   constructor(
-    private validateField: ValidateFieldsService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -43,19 +41,5 @@ export class MovieRegistrationComponent implements OnInit {
 
   resetForm(): void {
     this.registration.reset()
-  }
-
-  hasRequired(property: string): boolean {
-    return this.validateField.hasErrorValidate(this.fields?.[property], 'required')
-  }
-
-  hasMin(property: string): boolean {
-    return this.validateField.hasErrorValidate(this.fields?.[property], 'minlength')
-      || this.validateField.hasErrorValidate(this.fields?.[property], 'min')
-  }
-
-  hasMax(property: string): boolean {
-    return this.validateField.hasErrorValidate(this.fields?.[property], 'maxlength')
-      || this.validateField.hasErrorValidate(this.fields?.[property], 'max')
   }
 }
