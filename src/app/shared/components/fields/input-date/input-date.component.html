@@ -1,12 +1,12 @@
 <div [formGroup]="formGroup">
   <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Data de Lançamento</mat-label>
+    <mat-label>{{ inputName }}</mat-label>
     <input
       matInput
       [matDatepicker]="picker"
-      placeholder="Data de Lançamento"
-      name="releaseDate"
-      formControlName="releaseDate"
+      [placeholder]="inputName"
+      [name]="controlName"
+      [formControlName]="controlName"
       readonly
       (click)="picker.open()"
     />
