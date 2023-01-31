@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { MAT_DATE_LOCALE } from '@angular/material/core'
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TopComponent } from './shared/components/top/top.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MaterialModule } from './shared/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core'
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MoviesModule } from './movies/movies.module';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { TableComponent } from './shared/components/table/table.component';
-import { MoviesModule } from './movies/movies.module';
+import { TopComponent } from './shared/components/top/top.component';
+import { MaterialModule } from './shared/material/material.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MoviesModule } from './movies/movies.module';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     LayoutModule,
     MaterialModule,
     MoviesModule,
