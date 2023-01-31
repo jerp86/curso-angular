@@ -24,15 +24,7 @@
           <mat-error *ngIf="hasRequired('releaseDate')">Campo obrigatório</mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Descrição</mat-label>
-          <textarea
-            matInput
-            placeholder="Descrição"
-            name="description"
-            formControlName="description"
-          ></textarea>
-        </mat-form-field>
+        <dio-input-textarea inputName="Descrição" controlName="description" [formGroup]="registration" />
 
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Nota IMDb</mat-label>
