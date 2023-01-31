@@ -4,13 +4,15 @@ import { InputTextComponent } from './input-text/input-text.component';
 import { MaterialModule } from '../../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextareaComponent } from './input-textarea/input-textarea.component';
+import { InputNumberComponent } from './input-number/input-number.component';
 
 
 
 @NgModule({
   declarations: [
     InputTextComponent,
-    InputTextareaComponent
+    InputTextareaComponent,
+    InputNumberComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,7 @@ import { InputTextareaComponent } from './input-textarea/input-textarea.componen
   exports: [
     InputTextComponent,
     InputTextareaComponent,
+    InputNumberComponent,
   ]
 })
 export class FieldsModule { }
