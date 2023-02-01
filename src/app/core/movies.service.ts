@@ -18,6 +18,8 @@ export class MoviesService {
   list(page: number, limit: number): Observable<Movie[]> {
     let httpParams = new HttpParams()
     httpParams = httpParams
+      .set('_sort', 'id')
+      .set('_order', 'desc')
       .set('_page', page.toString())
       .set('_limit', limit.toString())
 
