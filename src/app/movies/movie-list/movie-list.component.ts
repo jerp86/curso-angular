@@ -22,6 +22,19 @@ export class MovieListComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
+  #listMovies(): void {
+    this.page++
+    this.moviesService
+      .list(this.page, this.limit, this.searchText, this.searchGenre)
+      .subscribe(movies => this.movies.push(...movies))
+  }
+
+  #resetList(): void {
+    this.page = 0
+    this.movies = []
+    this.#listMovies()
+  }
+
   ngOnInit(): void {
     this.listFilter = this.formBuilder.group({
       text: [''],
@@ -31,11 +44,6 @@ export class MovieListComponent implements OnInit {
     this.moveGenres = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror']
 
     this.#listMovies()
-  }
-
-  #listMovies(): void {
-    this.page++
-    this.moviesService.list(this.page, this.limit).subscribe(movies => this.movies.push(...movies))
   }
 
   onScroll(): void {
