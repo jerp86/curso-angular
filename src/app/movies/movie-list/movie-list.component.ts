@@ -8,12 +8,24 @@ import { Movie } from 'src/app/shared/models/movie';
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
+  readonly limit = 4
+  page = 0
   movies = [] as Movie[]
 
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    this.moviesService.list().subscribe(movies => this.movies = movies)
+    this.#listMovies()
+  }
+
+  #listMovies(): void {
+    this.page++
+    this.moviesService.list(this.page, this.limit).subscribe(movies => this.movies.push(...movies))
+  }
+
+  onScroll(): void {
+    console.log('Preciso de registros...');
+    this.#listMovies()
   }
 
   open() {}
