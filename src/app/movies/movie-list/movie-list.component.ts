@@ -11,8 +11,10 @@ import { Movie } from 'src/app/shared/models/movie';
 export class MovieListComponent implements OnInit {
   readonly limit = 4
   page = 0
-  movies = [] as Movie[]
+  searchText = ''
+  searchGenre = ''
   listFilter = {} as FormGroup
+  movies = [] as Movie[]
   moveGenres = [] as string[]
 
   constructor(
