@@ -41,6 +41,16 @@ export class MovieListComponent implements OnInit {
       movieGenre: [''],
     })
 
+    this.listFilter.get('text')?.valueChanges.subscribe((value: string) => {
+      this.searchText = value
+      this.#resetList()
+    })
+
+    this.listFilter.get('movieGenre')?.valueChanges.subscribe((value: string) => {
+      this.searchGenre = value
+      this.#resetList()
+    })
+
     this.moveGenres = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror']
 
     this.#listMovies()
