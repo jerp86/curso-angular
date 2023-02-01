@@ -24,7 +24,6 @@ export class MovieListComponent implements OnInit {
   }
 
   onScroll(): void {
-    console.log('Preciso de registros...');
     this.#listMovies()
   }
 
