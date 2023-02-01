@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 import { MoviesService } from 'src/app/core/movies.service';
 import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
@@ -19,7 +20,8 @@ export class MovieRegistrationComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private moviesService: MoviesService
+    private moviesService: MoviesService,
+    private router: Router
   ) {}
 
   get fields()  {
@@ -53,6 +55,15 @@ export class MovieRegistrationComponent implements OnInit {
             } as Alert
           }
           const dialogRef = this.dialog.open(AlertComponent, config)
+
+          dialogRef.afterClosed().subscribe((option: boolean) => {
+            if (option) {
+              this.router.navigateByUrl('movies')
+              return
+            }
+
+            this.handleResetForm()
+          })
         },
         () => alert('ERRO no #savedForm')
       )
