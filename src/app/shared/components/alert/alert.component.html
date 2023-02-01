@@ -10,7 +10,7 @@
   <button
     cdkFocusInitial
     mat-raised-button
-    [color]="alert.colorButton"
+    [color]="alert.colorSuccessButton"
     [mat-dialog-close]="true"
   >
     {{ alert.successButton }}
@@ -18,7 +18,7 @@
 
   <button
     mat-raised-button
-    color="warn"
+    [color]="alert.colorCancelButton"
     [mat-dialog-close]="false"
     *ngIf="alert.hasCloseButton"
   >

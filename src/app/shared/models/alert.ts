@@ -3,6 +3,7 @@ export interface Alert {
   description?: string
   successButton?: string
   cancelButton?: string
-  colorButton?: string
+  colorSuccessButton?: string
+  colorCancelButton?: string
   hasCloseButton?: boolean
 }
