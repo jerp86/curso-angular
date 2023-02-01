@@ -17,6 +17,21 @@
   padding: 1.6rem;
 }
 
+.list-filter {
+  width: calc(100% - 5rem);
+
+  >form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.6rem;
+
+    div {
+      padding: 1.6rem;
+    }
+  }
+}
+
 @media screen and (min-width: 525px) {
   .home-content {
     .home-card {
