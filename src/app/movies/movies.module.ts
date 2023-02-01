@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { MovieRegistrationComponent } from './movie-registration/movie-registration.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
@@ -16,6 +17,7 @@ import { FieldsModule } from '../shared/components/fields/fields.module';
     CommonModule,
     FieldsModule,
     FormsModule,
+    InfiniteScrollModule,
     MaterialModule,
     ReactiveFormsModule,
   ]
