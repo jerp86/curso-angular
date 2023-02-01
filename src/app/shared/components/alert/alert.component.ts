@@ -19,7 +19,7 @@ export class AlertComponent implements OnInit {
     this.alert.description = this.data?.description || 'Seu registro foi salvo com sucesso!'
     this.alert.successButton = this.data?.successButton || 'OK'
     this.alert.cancelButton = this.data?.cancelButton || 'Cancelar'
-    this.alert.colorSuccessButton = this.data?.colorSuccessButton || 'primary'
+    this.alert.colorSuccessButton = this.data?.colorSuccessButton || 'accent'
     this.alert.colorCancelButton = this.data?.colorCancelButton || 'warn'
     this.alert.hasCloseButton = this.data?.hasCloseButton || false
   }
