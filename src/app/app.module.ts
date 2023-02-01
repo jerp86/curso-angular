@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MoviesModule } from './movies/movies.module';
+import { AlertComponent } from './shared/components/alert/alert.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { TableComponent } from './shared/components/table/table.component';
 import { TopComponent } from './shared/components/top/top.component';
@@ -18,7 +19,8 @@ import { MaterialModule } from './shared/material/material.module';
     AppComponent,
     TopComponent,
     FooterComponent,
-    TableComponent
+    TableComponent,
+    AlertComponent
   ],
   imports: [
     AppRoutingModule,
@@ -29,6 +31,7 @@ import { MaterialModule } from './shared/material/material.module';
     MaterialModule,
     MoviesModule,
   ],
+  entryComponents: [AlertComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt' }],
   bootstrap: [AppComponent]
 })
