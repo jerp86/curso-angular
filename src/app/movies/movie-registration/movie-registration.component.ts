@@ -65,7 +65,18 @@ export class MovieRegistrationComponent implements OnInit {
             this.handleResetForm()
           })
         },
-        () => alert('ERRO no #savedForm')
+        () => {
+          const config = {
+            data: {
+              title: 'Erro ao salvar o registro!',
+              description: 'Não conseguimos salvar seu registro, favor tentar novamente mais tarde',
+              successButton: 'Fechar',
+              colorSuccessButton: 'warn',
+            } as Alert
+          }
+
+          this.dialog.open(AlertComponent, config)
+        }
       )
   }
 
