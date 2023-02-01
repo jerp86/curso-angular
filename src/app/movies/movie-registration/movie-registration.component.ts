@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+
 import { MoviesService } from 'src/app/core/movies.service';
+import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
+import { Alert } from 'src/app/shared/models/alert';
 import { Movie } from 'src/app/shared/models/movie';
 
 @Component({
@@ -13,6 +17,7 @@ export class MovieRegistrationComponent implements OnInit {
   moveGenres: string[] = []
 
   constructor(
+    public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private moviesService: MoviesService
   ) {}
@@ -38,7 +43,17 @@ export class MovieRegistrationComponent implements OnInit {
   #savedForm(movie: Movie): void {
     this.moviesService.save(movie)
       .subscribe(
-        () => alert('SUCESSO no #savedForm'),
+        () => {
+          const config = {
+            data: {
+              successButton: 'Ir para a listagem',
+              cancelButton: 'Cadastrar um novo filme',
+              colorCancelButton: 'primary',
+              hasCloseButton: true,
+            } as Alert
+          }
+          const dialogRef = this.dialog.open(AlertComponent, config)
+        },
         () => alert('ERRO no #savedForm')
       )
   }
