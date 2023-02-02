@@ -37,7 +37,8 @@ export class MovieViewComponent implements OnInit {
     const config = {
       data: {
         title: 'Você tem certeza que deseja excluir?',
-        description: 'Caso você tenha certceza que deseja excluir, clique no botão OK',
+        description:
+          `Caso você tenha certceza que deseja excluir o filme ${this.movie.title}, clique no botão OK`,
         colorSuccessButton: 'warn',
         colorCancelButton: 'primary',
         hasCloseButton: true
