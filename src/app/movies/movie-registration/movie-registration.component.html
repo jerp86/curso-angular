@@ -1,13 +1,13 @@
-<mat-toolbar class="app-title">Cadastrar Filme</mat-toolbar>
+<mat-toolbar class="app-title">{{ titlePage }}</mat-toolbar>
 
 <div class="main-div">
-  <mat-card class="center width50">
+  <mat-card class="center width50" *ngIf="registration">
     <form
+      autocomplete="off"
+      novalidate
       [formGroup]="registration"
       (ngSubmit)="handleSubmit()"
       (ngReset)="handleResetForm()"
-      autocomplete="off"
-      novalidate
     >
       <mat-card-content>
         <dio-input-text inputName="Título" controlName="title" [formGroup]="registration" />
