@@ -10,6 +10,8 @@ import { Movie } from 'src/app/shared/models/movie';
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
+  readonly emptyPhotoUrl = 'https://user-images.githubusercontent.com/54115624/216220907-7504edfc-7145-4923-9412-b968d4094dbd.png'
+
   configParams: ConfigParams =  {
     page: 0,
     limit: 4
