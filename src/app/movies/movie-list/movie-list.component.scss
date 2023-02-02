@@ -11,8 +11,8 @@
 }
 
 .mat-mdc-card-image {
-  width: 18.2rem;
-  height: 26.8rem;
+  aspect-ratio: 1.82 / 2.68;
+  width: min(60.66%, 18.2rem, 182px);
   object-fit: cover;
   display: block;
   padding: 0.8rem;
@@ -26,6 +26,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    flex-wrap: wrap;
     gap: 0.8rem;
 
     div {
@@ -46,6 +47,12 @@
   .home-content {
     .home-card {
       width: calc(50% - 5.2rem);
+    }
+  }
+
+  .list-filter {
+    > form {
+      flex-wrap: nowrap;
     }
   }
 }
