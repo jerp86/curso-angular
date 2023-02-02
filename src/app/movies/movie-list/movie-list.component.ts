@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MoviesService } from 'src/app/core/movies.service';
+import { ConfigParams } from 'src/app/shared/models/config-params';
 import { Movie } from 'src/app/shared/models/movie';
 
 @Component({
@@ -9,10 +10,10 @@ import { Movie } from 'src/app/shared/models/movie';
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
-  readonly limit = 4
-  page = 0
-  searchText = ''
-  searchGenre = ''
+  configParams: ConfigParams =  {
+    page: 0,
+    limit: 4
+  }
   listFilter = {} as FormGroup
   movies = [] as Movie[]
   moveGenres = [] as string[]
@@ -23,14 +24,14 @@ export class MovieListComponent implements OnInit {
   ) {}
 
   #listMovies(): void {
-    this.page++
+    this.configParams.page = this.configParams?.page ? this.configParams.page + 1 : 1
     this.moviesService
-      .list(this.page, this.limit, this.searchText, this.searchGenre)
+      .list(this.configParams.page, this.configParams.limit, this.configParams.query, this.configParams.field)
       .subscribe(movies => this.movies.push(...movies))
   }
 
   #resetList(): void {
-    this.page = 0
+    this.configParams.page = 0
     this.movies = []
     this.#listMovies()
   }
@@ -42,12 +43,12 @@ export class MovieListComponent implements OnInit {
     })
 
     this.listFilter.get('text')?.valueChanges.subscribe((value: string) => {
-      this.searchText = value
+      this.configParams.query = value
       this.#resetList()
     })
 
     this.listFilter.get('movieGenre')?.valueChanges.subscribe((value: string) => {
-      this.searchGenre = value
+      this.configParams.field = { type: 'movieGenre', value }
       this.#resetList()
     })
 
