@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime, map } from 'rxjs';
 import { MoviesService } from 'src/app/core/movies.service';
 import { ConfigParams } from 'src/app/shared/models/config-params';
 import { Movie } from 'src/app/shared/models/movie';
@@ -44,15 +45,18 @@ export class MovieListComponent implements OnInit {
       movieGenre: [''],
     })
 
-    this.listFilter.get('text')?.valueChanges.subscribe((value: string) => {
-      this.configParams.query = value
-      this.#resetList()
-    })
+    this.listFilter.get('text')?.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe((value: string) => {
+        this.configParams.query = value
+        this.#resetList()
+      })
 
-    this.listFilter.get('movieGenre')?.valueChanges.subscribe((value: string) => {
-      this.configParams.field = { type: 'movieGenre', value }
-      this.#resetList()
-    })
+    this.listFilter.get('movieGenre')?.valueChanges
+      .subscribe((value: string) => {
+        this.configParams.field = { type: 'movieGenre', value }
+        this.#resetList()
+      })
 
     this.moveGenres = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror']
 
