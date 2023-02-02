@@ -9,6 +9,8 @@ import { Movie } from 'src/app/shared/models/movie';
   styleUrls: ['./movie-view.component.scss']
 })
 export class MovieViewComponent implements OnInit {
+  readonly emptyPhotoUrl = 'https://user-images.githubusercontent.com/54115624/216220907-7504edfc-7145-4923-9412-b968d4094dbd.png'
+
   movie = {} as Movie
 
   constructor(

@@ -1,1 +1,19 @@
-<p>movie-view works!</p>
+<mat-list *ngIf="movie?.id else noRegistry">
+  <mat-list-item>Título: {{ movie.title }}</mat-list-item>
+
+  <mat-list-item>
+    Data de lançamento: {{ movie.releaseDate | date: 'dd/MM/yyyy' }}
+  </mat-list-item>
+
+  <mat-list-item>Descrição: {{ movie.description }}</mat-list-item>
+
+  <mat-list-item>
+    Nota: <a [href]="movie.imdbUrl" target="_blank">{{ movie.note }}</a>
+  </mat-list-item>
+
+  <img mat-card-image [src]="movie.imageUrl || emptyPhotoUrl" alt="">
+</mat-list>
+
+<ng-template #noRegistry>
+  <h1 class="full-width main-div">Nenhum registro encontrado!</h1>
+</ng-template>
