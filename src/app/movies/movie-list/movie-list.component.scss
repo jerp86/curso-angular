@@ -22,11 +22,11 @@
 .list-filter {
   width: calc(100% - 5rem);
 
-  >form {
+  > form {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 1.6rem;
+    gap: 0.8rem;
 
     div {
       padding: 1.6rem;
