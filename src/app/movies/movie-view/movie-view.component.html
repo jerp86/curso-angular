@@ -5,6 +5,8 @@
     Data de lançamento: {{ movie.releaseDate | date: 'dd/MM/yyyy' }}
   </mat-list-item>
 
+  <mat-list-item>Gênero: {{ movie.movieGenre }}</mat-list-item>
+
   <mat-list-item class="breake-line">Descrição: {{ movie.description }}</mat-list-item>
 
   <mat-list-item>
@@ -14,7 +16,7 @@
   <img mat-card-image [src]="movie.imageUrl || emptyPhotoUrl" alt="">
 </mat-list>
 
-<mat-card>
+<mat-card *ngIf="movie.id">
   <mat-card-actions class="container-buttons">
     <button color="accent" mat-raised-button>Editar</button>
 
