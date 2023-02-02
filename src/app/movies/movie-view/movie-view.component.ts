@@ -53,4 +53,10 @@ export class MovieViewComponent implements OnInit {
       }
     });
   }
+
+  editMovie(): void {
+    if (!this.id || this.id === 0) return
+
+    this.router.navigateByUrl(`/movies/registration/${this.id}`)
+  }
 }

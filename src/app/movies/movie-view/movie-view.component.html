@@ -18,7 +18,7 @@
 
 <mat-card *ngIf="movie.id">
   <mat-card-actions class="container-buttons">
-    <button color="accent" mat-raised-button>Editar</button>
+    <button color="accent" mat-raised-button (click)="editMovie()">Editar</button>
 
     <button color="warn" mat-raised-button (click)="deleteMovie()">Excluir</button>
   </mat-card-actions>
