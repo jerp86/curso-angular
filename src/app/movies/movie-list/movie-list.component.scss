@@ -11,10 +11,12 @@
 }
 
 .mat-mdc-card-image {
-  width: auto;
-  height: auto;
+  width: 18.2rem;
+  height: 26.8rem;
+  object-fit: cover;
   display: block;
-  padding: 1.6rem;
+  padding: 0.8rem;
+  margin: 0 auto;
 }
 
 .list-filter {
