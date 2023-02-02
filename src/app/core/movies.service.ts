@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GenericField } from '../shared/models/generic-field';
 import { Movie } from '../shared/models/movie';
+import { ConfigParamsService } from './config-params.service';
 
 const url = 'http://localhost:3333/movies/'
 
@@ -10,7 +11,7 @@ const url = 'http://localhost:3333/movies/'
   providedIn: 'root'
 })
 export class MoviesService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private configParams: ConfigParamsService) { }
 
   save(movie: Movie): Observable<Movie> {
     return this.http.post<Movie>(url, movie)
