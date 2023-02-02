@@ -26,25 +26,6 @@ export class MovieRegistrationComponent implements OnInit {
     private router: Router,
   ) {}
 
-  get fields()  {
-    return this.registration.controls
-  }
-
-  ngOnInit(): void {
-    this.registration = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(256)]],
-      imageUrl: ['', [Validators.minLength(10)]],
-      releaseDate: ['', [Validators.required]],
-      description: [''],
-      note: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
-      imdbUrl: ['', [Validators.minLength(10)]],
-      movieGenre: ['', [Validators.required]]
-    })
-
-    this.moveGenres = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror']
-    this.id = this.activateRoute.snapshot.params['id']
-  }
-
   #savedForm(movie: Movie): void {
     this.moviesService.save(movie)
       .subscribe(
@@ -83,6 +64,10 @@ export class MovieRegistrationComponent implements OnInit {
       )
   }
 
+  get fields()  {
+    return this.registration.controls
+  }
+
   handleSubmit(): void {
     this.registration.markAllAsTouched()
 
@@ -96,5 +81,20 @@ export class MovieRegistrationComponent implements OnInit {
 
   handleResetForm(): void {
     this.registration.reset()
+  }
+
+  ngOnInit(): void {
+    this.registration = this.formBuilder.group({
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(256)]],
+      imageUrl: ['', [Validators.minLength(10)]],
+      releaseDate: ['', [Validators.required]],
+      description: [''],
+      note: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
+      imdbUrl: ['', [Validators.minLength(10)]],
+      movieGenre: ['', [Validators.required]]
+    })
+
+    this.moveGenres = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror']
+    this.id = this.activateRoute.snapshot.params['id']
   }
 }
