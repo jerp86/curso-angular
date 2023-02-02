@@ -36,11 +36,11 @@ export class MovieViewComponent implements OnInit {
   deleteMovie(): void {
     const config = {
       data: {
-        titulo: 'Você tem certeza que deseja excluir?',
-        descricao: 'Caso você tenha certceza que deseja excluir, clique no botão OK',
-        corBtnCancelar: 'primary',
-        corBtnSucesso: 'warn',
-        possuirBtnFechar: true
+        title: 'Você tem certeza que deseja excluir?',
+        description: 'Caso você tenha certceza que deseja excluir, clique no botão OK',
+        colorSuccessButton: 'warn',
+        colorCancelButton: 'primary',
+        hasCloseButton: true
       } as Alert
     };
     const dialogRef = this.dialog.open(AlertComponent, config);
