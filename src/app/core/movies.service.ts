@@ -21,4 +21,8 @@ export class MoviesService {
     const params = this.configParams.configureParameters(config)
     return this.http.get<Movie[]>(url, { params })
   }
+
+  getById(id: number): Observable<Movie> {
+    return this.http.get<Movie>(url + id)
+  }
 }
