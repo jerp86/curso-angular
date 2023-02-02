@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { MoviesService } from 'src/app/core/movies.service';
 import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
@@ -16,12 +16,14 @@ import { Movie } from 'src/app/shared/models/movie';
 export class MovieRegistrationComponent implements OnInit {
   registration: FormGroup = {} as FormGroup
   moveGenres: string[] = []
+  id = 0
 
   constructor(
     public dialog: MatDialog,
+    private activateRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private moviesService: MoviesService,
-    private router: Router
+    private router: Router,
   ) {}
 
   get fields()  {
@@ -40,6 +42,7 @@ export class MovieRegistrationComponent implements OnInit {
     })
 
     this.moveGenres = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror']
+    this.id = this.activateRoute.snapshot.params['id']
   }
 
   #savedForm(movie: Movie): void {
