@@ -12,17 +12,19 @@ export class MovieViewComponent implements OnInit {
   readonly emptyPhotoUrl = 'https://user-images.githubusercontent.com/54115624/216220907-7504edfc-7145-4923-9412-b968d4094dbd.png'
 
   movie = {} as Movie
+  id = 0
 
   constructor(
     private activateRoute: ActivatedRoute,
     private moviesService: MoviesService
   ) {}
 
-  #getMovie(id: number) {
-    this.moviesService.getById(id).subscribe(movie => this.movie = movie)
+  #getMovie() {
+    this.moviesService.getById(this.id).subscribe(movie => this.movie = movie)
   }
 
   ngOnInit(): void {
-    this.#getMovie(this.activateRoute.snapshot.params['id'])
+    this.id = this.activateRoute.snapshot.params['id']
+    this.#getMovie()
   }
 }
