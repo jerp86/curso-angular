@@ -5,7 +5,7 @@
     Data de lançamento: {{ movie.releaseDate | date: 'dd/MM/yyyy' }}
   </mat-list-item>
 
-  <mat-list-item>Descrição: {{ movie.description }}</mat-list-item>
+  <mat-list-item class="breake-line">Descrição: {{ movie.description }}</mat-list-item>
 
   <mat-list-item>
     Nota: <a [href]="movie.imdbUrl" target="_blank">{{ movie.note }}</a>
