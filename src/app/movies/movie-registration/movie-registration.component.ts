@@ -67,6 +67,37 @@ export class MovieRegistrationComponent implements OnInit {
       )
   }
 
+  #editForm(movie: Movie): void {
+    this.moviesService.edit(movie)
+      .subscribe(
+        () => {
+          const config = {
+            data: {
+              title: 'Registro atualizado com sucesso!',
+              description:
+                `O registro #${this.id} do filme ${movie.title} foi atualizado com sucesso!`,
+              successButton: 'Ir para a listagem',
+            } as Alert
+          }
+          const dialogRef = this.dialog.open(AlertComponent, config)
+
+          dialogRef.afterClosed().subscribe(() => this.router.navigateByUrl('movies'))
+        },
+        () => {
+          const config = {
+            data: {
+              title: 'Erro ao editar o registro!',
+              description: 'Não conseguimos editar seu registro, favor tentar novamente mais tarde',
+              successButton: 'Fechar',
+              colorSuccessButton: 'warn',
+            } as Alert
+          }
+
+          this.dialog.open(AlertComponent, config)
+        }
+      )
+  }
+
   #createEmptyForm(): Movie {
     return {} as Movie
   }
@@ -91,6 +122,13 @@ export class MovieRegistrationComponent implements OnInit {
     }
 
     const movie = this.registration.getRawValue() as Movie
+
+    if (this.id) {
+      movie.id = this.id
+      this.#editForm(movie)
+      return
+    }
+
     this.#savedForm(movie)
   }
 
