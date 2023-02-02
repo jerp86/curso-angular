@@ -13,8 +13,18 @@ const routes: Routes = [
       { path: '', component: MovieListComponent },
       {
         path: 'registration',
-        component: MovieRegistrationComponent,
-        pathMatch: 'full'
+        children: [
+          {
+            path: '',
+            component: MovieRegistrationComponent,
+            pathMatch: 'full'
+          },
+          {
+            path: ':id',
+            component: MovieRegistrationComponent,
+            pathMatch: 'full'
+          },
+        ],
       },
       {
         path: ':id',
