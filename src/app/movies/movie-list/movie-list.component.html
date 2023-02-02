@@ -23,12 +23,12 @@
     <img mat-card-image [src]="movie.imageUrl || emptyPhotoUrl" alt="">
 
     <mat-card-content>
-      <p>
-        {{ movie.description }}
+      <p class="break-line max-3-lines">
+        {{ movie.description || 'Nenhuma descrição informada' }}
       </p>
     </mat-card-content>
 
-    <mat-card-actions class="mt-auto">
+    <mat-card-actions class="mt-auto margin-horizontal-8">
       <button color="accent" (click)="open()" mat-raised-button>Abrir</button>
     </mat-card-actions>
   </mat-card>
