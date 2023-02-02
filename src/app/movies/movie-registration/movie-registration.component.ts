@@ -14,9 +14,10 @@ import { Movie } from 'src/app/shared/models/movie';
   styleUrls: ['./movie-registration.component.scss']
 })
 export class MovieRegistrationComponent implements OnInit {
-  registration: FormGroup = {} as FormGroup
-  moveGenres: string[] = []
   id = 0
+  moveGenres: string[] = []
+  registration = {} as FormGroup
+  titlePage = ''
 
   constructor(
     public dialog: MatDialog,
@@ -24,7 +25,9 @@ export class MovieRegistrationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private moviesService: MoviesService,
     private router: Router,
-  ) {}
+  ) {
+    this.#createForm(this.#createEmptyForm())
+  }
 
   #savedForm(movie: Movie): void {
     this.moviesService.save(movie)
@@ -64,8 +67,20 @@ export class MovieRegistrationComponent implements OnInit {
       )
   }
 
-  get fields()  {
-    return this.registration.controls
+  #createEmptyForm(): Movie {
+    return {} as Movie
+  }
+
+  #createForm(movie: Movie): void {
+    this.registration = this.formBuilder.group({
+      title: [movie?.title, [Validators.required, Validators.minLength(3), Validators.maxLength(256)]],
+      imageUrl: [movie?.imageUrl, [Validators.minLength(10)]],
+      releaseDate: [movie?.releaseDate, [Validators.required]],
+      description: [movie?.description],
+      note: [movie?.note, [Validators.required, Validators.min(0), Validators.max(10)]],
+      imdbUrl: [movie?.imdbUrl, [Validators.minLength(10)]],
+      movieGenre: [movie?.movieGenre, [Validators.required]]
+    })
   }
 
   handleSubmit(): void {
@@ -84,17 +99,25 @@ export class MovieRegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.registration = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(256)]],
-      imageUrl: ['', [Validators.minLength(10)]],
-      releaseDate: ['', [Validators.required]],
-      description: [''],
-      note: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
-      imdbUrl: ['', [Validators.minLength(10)]],
-      movieGenre: ['', [Validators.required]]
-    })
-
     this.moveGenres = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror']
+
     this.id = this.activateRoute.snapshot.params['id']
+    if (!this.id) {
+      this.titlePage = 'Cadastrar Filme'
+      this.#createForm(this.#createEmptyForm())
+      return
+    }
+
+      this.titlePage = 'Editar Filme'
+      this.moviesService
+      .getById(this.id)
+      .subscribe(
+        (movie) => this.#createForm(movie),
+        () => {
+          this.#createForm(this.#createEmptyForm())
+          this.titlePage = 'Cadastrar Filme'
+          this.id = 0
+        }
+      )
   }
 }
