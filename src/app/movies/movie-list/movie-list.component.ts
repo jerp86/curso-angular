@@ -26,7 +26,7 @@ export class MovieListComponent implements OnInit {
   #listMovies(): void {
     this.configParams.page = this.configParams?.page ? this.configParams.page + 1 : 1
     this.moviesService
-      .list(this.configParams.page, this.configParams.limit, this.configParams.query, this.configParams.field)
+      .list(this.configParams)
       .subscribe(movies => this.movies.push(...movies))
   }
 

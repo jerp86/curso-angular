@@ -1,7 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GenericField } from '../shared/models/generic-field';
+import { ConfigParams } from '../shared/models/config-params';
 import { Movie } from '../shared/models/movie';
 import { ConfigParamsService } from './config-params.service';
 
@@ -17,22 +17,8 @@ export class MoviesService {
     return this.http.post<Movie>(url, movie)
   }
 
-  list(page?: number, limit?: number, searchText?: string, searchField?: GenericField): Observable<Movie[]> {
-    let httpParams = new HttpParams()
-    httpParams = httpParams
-      .set('_sort', 'id')
-      .set('_order', 'desc')
-      .set('_page', page ? page.toString() : '')
-      .set('_limit', limit ? limit.toString() : '')
-
-    if (searchText) {
-      httpParams = httpParams.set('q', searchText)
-    }
-
-    if (searchField) {
-      httpParams = httpParams.set(searchField.type, searchField.value)
-    }
-
-    return this.http.get<Movie[]>(url, { params: httpParams })
+  list(config: ConfigParams): Observable<Movie[]> {
+    const params = this.configParams.configureParameters(config)
+    return this.http.get<Movie[]>(url, { params })
   }
 }
